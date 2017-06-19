@@ -14,6 +14,11 @@ var newCanvas = {
     this.canvas.height = 500;
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
+    this.interval = setInterval(updateGame, 20);
+  },
+
+  clear: function() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 }
 
@@ -22,9 +27,16 @@ function shape(width, height, colour, xCoord, yCoord) {
   this.height = height;
   this.xCoord = xCoord;
   this.yCoord = yCoord;
-  ctx = newCanvas.context;
-  ctx.fillStyle = colour;
-  ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
+  this.update = function() {
+    ctx = newCanvas.context;
+    ctx.fillStyle = colour;
+    ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
+  }
+}
+
+function updateGame() {
+  newCanvas.clear();
+  playerIcon.update();
 }
 
 window.addEventListener("load", newGame());
