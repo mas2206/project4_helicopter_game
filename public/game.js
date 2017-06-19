@@ -1,5 +1,8 @@
+var playerIcon;
+
 function newGame() {
   newCanvas.create();
+  playerIcon = new shape(50, 50, "red", 50, 200);
 }
 
 var newCanvas = {
@@ -12,6 +15,16 @@ var newCanvas = {
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
   }
+}
+
+function shape(width, height, colour, xCoord, yCoord) {
+  this.width = width;
+  this.height = height;
+  this.xCoord = xCoord;
+  this.yCoord = yCoord;
+  ctx = newCanvas.context;
+  ctx.fillStyle = colour;
+  ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
 }
 
 window.addEventListener("load", newGame());
