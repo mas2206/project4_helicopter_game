@@ -14,7 +14,7 @@ var newCanvas = {
     this.canvas.height = 500;
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
-    this.interval = setInterval(updateGame, 20);
+    this.interval = setInterval(updateGame, 30);
   },
 
   clear: function() {
@@ -36,6 +36,7 @@ function shape(width, height, colour, xCoord, yCoord) {
 
 function updateGame() {
   newCanvas.clear();
+  playerIcon.xCoord += 1;
   playerIcon.update();
 }
 
