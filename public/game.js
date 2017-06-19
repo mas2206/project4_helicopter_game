@@ -36,7 +36,7 @@ function shape(width, height, colour, xCoord, yCoord) {
 
 function updateGame() {
   newCanvas.clear();
-  playerIcon.xCoord += 1;
+  // playerIcon.xCoord += 1;
   playerIcon.update();
 }
 
