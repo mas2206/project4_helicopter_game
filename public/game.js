@@ -16,7 +16,7 @@ var newCanvas = {
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
     this.frameNumber = 0;
-    this.interval = setInterval(updateGame, 20);
+    this.interval = setInterval(updateGame, 16);
 
     window.addEventListener("keydown", function(event) {
       newCanvas.keys = (newCanvas.keys || []);
