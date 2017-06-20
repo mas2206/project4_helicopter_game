@@ -77,7 +77,7 @@ function shape(width, height, colour, xCoord, yCoord) {
     var otherObjectTop = otherObject.yCoord;
     var otherObjectBottom = (otherObject.yCoord + otherObject.height);
     var collision = true;
-    if ((playerIconTop < otherObjectTop) || (playerIconTop > otherObjectBottom) || (playerIconRight < otherObjectLeft) || (playerIconLeft > otherObjectRight)) {
+    if ((playerIconBottom < otherObjectTop) || (playerIconTop > otherObjectBottom) || (playerIconRight < otherObjectLeft) || (playerIconLeft > otherObjectRight)) {
       collision = false;
     }
     return collision;
