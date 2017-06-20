@@ -4,9 +4,7 @@ var pillarObstacle;
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(50, 50, "red", 50, 200); //width, height, colour, xCoord, yCoord
-  pillarObstacle = new shape(10, 100, "green", 300, 120);
-  pillarObstacle2 = new shape(10, 100, "green", 300, 300);
-  pillarObstacle3 = new shape(10, 100, "green", 120, 120);
+  pillarObstacle = new shape(50, 300, "green", 600, 100);
 }
 
 var newCanvas = {
@@ -94,8 +92,6 @@ function updateGame() {
 
   newCanvas.clear();
   pillarObstacle.xCoord -= 5;
-  pillarObstacle2.xCoord -= 5;
-  pillarObstacle3.xCoord -= 5;
   console.log("PILLAR OBSTACLE X: ", pillarObstacle.xCoord);
   console.log("PILLAR OBSTACLE Y: ", pillarObstacle.yCoord);
 
@@ -129,8 +125,6 @@ function updateGame() {
   playerIcon.newPosition();
   playerIcon.update();
   pillarObstacle.update();
-  pillarObstacle2.update();
-  pillarObstacle3.update();
 }
 }
 
