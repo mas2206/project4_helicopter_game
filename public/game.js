@@ -138,7 +138,7 @@ function updateGame() {
     height = Math.floor(Math.random() * (maxHeight - (minHeight + 1)) + minHeight); 
 
     minGap = 80;
-    maxGap = 120;
+    maxGap = 300;
     gap = Math.floor(Math.random() * (maxGap - (minGap + 1)) + minGap);
 
     pillarObstacles.push(new shape(50, height, "blue", xCoord, 0));
