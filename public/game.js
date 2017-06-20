@@ -3,7 +3,7 @@ var pillarObstacles = [];
 
 function newGame() {
   newCanvas.create();
-  playerIcon = new shape(50, 50, "green", 50, 200); //width, height, colour, xCoord, yCoord
+  playerIcon = new shape(50, 50, "/images/copter.png", 50, 200, "image");
 }
 
 var newCanvas = {
@@ -36,17 +36,28 @@ var newCanvas = {
   }
 }
 
-function shape(width, height, colour, xCoord, yCoord) {
+function shape(width, height, colour, xCoord, yCoord, type) {
   this.width = width;
   this.height = height;
   this.xCoord = xCoord;
   this.yCoord = yCoord;
+
+  this.type = type;
+  if (type == "image") {
+    this.image = new Image();
+    this.image.src = colour;
+  }
+
   this.xSpeed = 0;
   this.ySpeed = 0;
   this.update = function() {
     ctx = newCanvas.context;
+      if (type == "image") {
+      ctx.drawImage(this.image, this.xCoord, this.yCoord, this.width, this.height);
+      } else {
     ctx.fillStyle = colour;
     ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
+    }
   }
   this.newPosition = function() {
     console.log("PLAYER ICON X: ", playerIcon.xCoord);
@@ -134,7 +145,7 @@ function updateGame() {
     xCoord = newCanvas.canvas.width;
 
     minHeight = 20;
-    maxHeight = 400;
+    maxHeight = 300;
     height = Math.floor(Math.random() * (maxHeight - (minHeight + 1)) + minHeight); 
 
     minGap = 80;
