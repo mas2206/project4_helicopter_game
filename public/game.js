@@ -16,7 +16,7 @@ var newCanvas = {
     this.canvas.height = 500;
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
-    this.interval = setInterval(updateGame, 100);
+    this.interval = setInterval(updateGame, 20);
 
     window.addEventListener("keydown", function(event) {
       newCanvas.key = event.keyCode;
@@ -91,7 +91,7 @@ function updateGame() {
   } else {
 
   newCanvas.clear();
-  pillarObstacle.xCoord -= 20;
+  pillarObstacle.xCoord -= 10;
   console.log("PILLAR OBSTACLE X: ", pillarObstacle.xCoord);
   console.log("PILLAR OBSTACLE Y: ", pillarObstacle.yCoord);
 
@@ -101,25 +101,25 @@ function updateGame() {
   //MOVE LEFT
   if (newCanvas.key == 37) {
     console.log("LEFT");
-    playerIcon.xSpeed = -10;
+    playerIcon.xSpeed = -5;
   }
 
   //MOVE UP
   if (newCanvas.key == 38) {
     console.log("UP");
-    playerIcon.ySpeed = -10;
+    playerIcon.ySpeed = -5;
   }
 
   //MOVE RIGHT
   if (newCanvas.key == 39) {
     console.log("RIGHT");
-    playerIcon.xSpeed = 10;
+    playerIcon.xSpeed = 5;
   }
 
   //MOVE DOWN
   if (newCanvas.key == 40) {
     console.log("DOWN");
-    playerIcon.ySpeed = 10;
+    playerIcon.ySpeed = 5;
   }
 
   playerIcon.newPosition();
