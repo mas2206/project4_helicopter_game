@@ -3,7 +3,7 @@ var pillarObstacles = [];
 
 function newGame() {
   newCanvas.create();
-  playerIcon = new shape(50, 50, "red", 50, 200); //width, height, colour, xCoord, yCoord
+  playerIcon = new shape(50, 50, "green", 50, 200); //width, height, colour, xCoord, yCoord
 }
 
 var newCanvas = {
@@ -94,8 +94,6 @@ function perFrame(number) {
 }
 
 function updateGame() {
-  var xCoord;
-  var yCoord;
   for (i = 0; i < pillarObstacles.length; i++) {
     if (playerIcon.collide(pillarObstacles[i])) {
       newCanvas.stop();
@@ -109,33 +107,33 @@ function updateGame() {
   //MOVE LEFT
   if (newCanvas.keys && newCanvas.keys[37]) {
     console.log("LEFT");
-    playerIcon.xSpeed = -5;
+    playerIcon.xSpeed = -4;
   }
 
   //MOVE UP
   if (newCanvas.keys && newCanvas.keys[38]) {
     console.log("UP");
-    playerIcon.ySpeed = -5;
+    playerIcon.ySpeed = -4;
   }
 
   //MOVE RIGHT
   if (newCanvas.keys && newCanvas.keys[39]) {
     console.log("RIGHT");
-    playerIcon.xSpeed = 5;
+    playerIcon.xSpeed = 4;
   }
 
   //MOVE DOWN
   if (newCanvas.keys && newCanvas.keys[40]) {
     console.log("DOWN");
-    playerIcon.ySpeed = 5;
+    playerIcon.ySpeed = 4;
   }
 
   newCanvas.clear();
   newCanvas.frameNumber += 1;
   if (newCanvas.frameNumber == 1 || perFrame(120)) {
     xCoord = newCanvas.canvas.width;
-    yCoord = newCanvas.canvas.height - 400;
-    pillarObstacles.push(new shape(80, 450, "green", xCoord, yCoord));
+    yCoord = newCanvas.canvas.height - 430;
+    pillarObstacles.push(new shape(80, 350, "blue", xCoord, yCoord)); //width, height
   }
   for (i = 0; i < pillarObstacles.length; i++) {
     pillarObstacles[i].xCoord -= 2;
