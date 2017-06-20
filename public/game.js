@@ -1,8 +1,10 @@
 var playerIcon;
+var pillarObstable;
 
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(50, 50, "red", 50, 200);
+  pillarObstable = new shape(10, 100, "green", 300, 120);
 }
 
 var newCanvas = {
@@ -95,6 +97,7 @@ function updateGame() {
 
   playerIcon.newPosition();
   playerIcon.update();
+  pillarObstable.update();
 }
 
 window.addEventListener("load", newGame());
