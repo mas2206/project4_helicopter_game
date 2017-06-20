@@ -44,8 +44,8 @@ function shape(width, height, colour, xCoord, yCoord) {
     ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
   }
   this.newPosition = function() {
-    console.log("X: ", playerIcon.xCoord);
-    console.log("Y: ", playerIcon.yCoord);
+    console.log("PLAYER ICON X: ", playerIcon.xCoord);
+    console.log("PLAYER ICON Y: ", playerIcon.yCoord);
     this.xCoord += this.xSpeed;
     this.yCoord += this.ySpeed;
 
@@ -67,7 +67,9 @@ function shape(width, height, colour, xCoord, yCoord) {
 
 function updateGame() {
   newCanvas.clear();
-  pillarObstable.xCoord -= 5;
+  // pillarObstable.xCoord -= 5;
+  console.log("PILLAR OBSTACLE X: ", pillarObstable.xCoord);
+  console.log("PILLAR OBSTACLE Y: ", pillarObstable.yCoord);
 
   playerIcon.xSpeed = 0;
   playerIcon.ySpeed = 0;
