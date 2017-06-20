@@ -130,17 +130,26 @@ function updateGame() {
 
   newCanvas.clear();
   newCanvas.frameNumber += 1;
-  if (newCanvas.frameNumber == 1 || perFrame(120)) {
+  if (newCanvas.frameNumber == 1 || perFrame(60)) {
     xCoord = newCanvas.canvas.width;
-    yCoord = newCanvas.canvas.height - 430;
-    pillarObstacles.push(new shape(80, 350, "blue", xCoord, yCoord)); //width, height
+
+    minHeight = 20;
+    maxHeight = 400;
+    height = Math.floor(Math.random() * (maxHeight - (minHeight + 1)) + minHeight); 
+
+    minGap = 80;
+    maxGap = 120;
+    gap = Math.floor(Math.random() * (maxGap - (minGap + 1)) + minGap);
+
+    pillarObstacles.push(new shape(50, height, "blue", xCoord, 0));
+    pillarObstacles.push(new shape(50, (xCoord - height - gap), "blue", xCoord, (height + gap)));
   }
   for (i = 0; i < pillarObstacles.length; i++) {
-    pillarObstacles[i].xCoord -= 2;
+    pillarObstacles[i].xCoord -= 5;
     pillarObstacles[i].update();
   }
   playerIcon.newPosition();
   playerIcon.update();
-}    
+}
 
 window.addEventListener("load", newGame());
