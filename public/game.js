@@ -1,10 +1,9 @@
 var playerIcon;
-var pillarObstacle;
+var pillarObstacles = [];
 
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(50, 50, "red", 50, 200); //width, height, colour, xCoord, yCoord
-  pillarObstacle = new shape(50, 300, "green", 600, 100);
 }
 
 var newCanvas = {
@@ -16,6 +15,7 @@ var newCanvas = {
     this.canvas.height = 500;
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
+    this.frameNumber = 0;
     this.interval = setInterval(updateGame, 20);
 
     window.addEventListener("keydown", function(event) {
@@ -85,17 +85,24 @@ function shape(width, height, colour, xCoord, yCoord) {
   }
 }
 
-function updateGame() {
-  if (playerIcon.collide(pillarObstacle)) {
-    newCanvas.stop();
-    console.log("COLLISION DETECTED");
+function perFrame(number) {
+  if ((newCanvas.frameNumber / number) % 1 == 0) {
+    return true;
   } else {
+    return false;
+  }
+}
 
-  newCanvas.clear();
-  pillarObstacle.xCoord -= 4;
-  console.log("PILLAR OBSTACLE X: ", pillarObstacle.xCoord);
-  console.log("PILLAR OBSTACLE Y: ", pillarObstacle.yCoord);
-
+function updateGame() {
+  var xCoord;
+  var yCoord;
+  for (i = 0; i < pillarObstacles.length; i++) {
+    if (playerIcon.collide(pillarObstacles[i])) {
+      newCanvas.stop();
+      console.log("COLLISION DETECTED");
+      return;
+    }
+  }
   playerIcon.xSpeed = 0;
   playerIcon.ySpeed = 0;
 
@@ -123,10 +130,19 @@ function updateGame() {
     playerIcon.ySpeed = 5;
   }
 
+  newCanvas.clear();
+  newCanvas.frameNumber += 1;
+  if (newCanvas.frameNumber == 1 || perFrame(120)) {
+    xCoord = newCanvas.canvas.width;
+    yCoord = newCanvas.canvas.height - 400;
+    pillarObstacles.push(new shape(80, 450, "green", xCoord, yCoord));
+  }
+  for (i = 0; i < pillarObstacles.length; i++) {
+    pillarObstacles[i].xCoord -= 2;
+    pillarObstacles[i].update();
+  }
   playerIcon.newPosition();
   playerIcon.update();
-  pillarObstacle.update();
-}
-}
+}    
 
 window.addEventListener("load", newGame());
