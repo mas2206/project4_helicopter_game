@@ -28,6 +28,10 @@ var newCanvas = {
 
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+
+  stop: function() {
+    clearInterval(this.interval);
   }
 }
 
@@ -63,9 +67,29 @@ function shape(width, height, colour, xCoord, yCoord) {
       this.yCoord = 450;
     }
   }
+  this.collide = function(otherObject) {
+    var playerIconLeft = this.xCoord;
+    var playerIconRight = (this.xCoord + this.width);
+    var playerIconTop = this.yCoord;
+    var playerIconBottom = (this.yCoord + this.height);
+    var otherObjectLeft = otherObject.xCoord;
+    var otherObjectRight = (otherObject.xCoord + otherObject.width);
+    var otherObjectTop = otherObject.yCoord;
+    var otherObjectBottom = (otherObject.yCoord + otherObject.height);
+    var collision = true;
+    if ((playerIconTop < otherObjectTop) || (playerIconTop > otherObjectBottom) || (playerIconRight < otherObjectLeft) || (playerIconLeft > otherObjectRight)) {
+      collision = false;
+    }
+    return collision;
+  }
 }
 
 function updateGame() {
+  if (playerIcon.collide(pillarObstacle)) {
+    newCanvas.stop();
+    console.log("COLLISION DETECTED");
+  } else {
+
   newCanvas.clear();
   // pillarObstable.xCoord -= 5;
   console.log("PILLAR OBSTACLE X: ", pillarObstacle.xCoord);
@@ -101,6 +125,7 @@ function updateGame() {
   playerIcon.newPosition();
   playerIcon.update();
   pillarObstacle.update();
+}
 }
 
 window.addEventListener("load", newGame());
