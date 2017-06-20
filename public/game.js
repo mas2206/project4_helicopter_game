@@ -91,7 +91,7 @@ function updateGame() {
   } else {
 
   newCanvas.clear();
-  pillarObstacle.xCoord -= 5;
+  pillarObstacle.xCoord -= 20;
   console.log("PILLAR OBSTACLE X: ", pillarObstacle.xCoord);
   console.log("PILLAR OBSTACLE Y: ", pillarObstacle.yCoord);
 
