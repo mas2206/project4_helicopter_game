@@ -19,10 +19,11 @@ var newCanvas = {
     this.interval = setInterval(updateGame, 20);
 
     window.addEventListener("keydown", function(event) {
-      newCanvas.key = event.keyCode;
+      newCanvas.keys = (newCanvas.keys || []);
+      newCanvas.keys[event.keyCode] = true;
     })
     window.addEventListener("keyup", function(event) {
-      newCanvas.key = false;
+      newCanvas.keys[event.keyCode] = false;
     })
   },
 
@@ -99,25 +100,25 @@ function updateGame() {
   playerIcon.ySpeed = 0;
 
   //MOVE LEFT
-  if (newCanvas.key == 37) {
+  if (newCanvas.keys && newCanvas.keys[37]) {
     console.log("LEFT");
     playerIcon.xSpeed = -5;
   }
 
   //MOVE UP
-  if (newCanvas.key == 38) {
+  if (newCanvas.keys && newCanvas.keys[38]) {
     console.log("UP");
     playerIcon.ySpeed = -5;
   }
 
   //MOVE RIGHT
-  if (newCanvas.key == 39) {
+  if (newCanvas.keys && newCanvas.keys[39]) {
     console.log("RIGHT");
     playerIcon.xSpeed = 5;
   }
 
   //MOVE DOWN
-  if (newCanvas.key == 40) {
+  if (newCanvas.keys && newCanvas.keys[40]) {
     console.log("DOWN");
     playerIcon.ySpeed = 5;
   }
