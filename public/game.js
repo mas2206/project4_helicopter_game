@@ -47,8 +47,18 @@ function shape(width, height, colour, xCoord, yCoord) {
     this.xCoord += this.xSpeed;
     this.yCoord += this.ySpeed;
 
+    //player icon cannot go out of bounds anywhere on the canvas
     if (this.xCoord < 0) {
-      this.xCoord = 0
+      this.xCoord = 0;
+    }
+    if (this.yCoord < 0) {
+      this.yCoord = 0;
+    }
+    if (this.xCoord > 750) {
+      this.xCoord = 750;
+    }
+    if (this.yCoord > 450) {
+      this.yCoord = 450;
     }
   }
 }
