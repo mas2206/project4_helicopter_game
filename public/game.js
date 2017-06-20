@@ -3,7 +3,7 @@ var pillarObstable;
 
 function newGame() {
   newCanvas.create();
-  playerIcon = new shape(50, 50, "red", 50, 200);
+  playerIcon = new shape(50, 50, "red", 50, 200); //width, height, colour, xCoord, yCoord
   pillarObstable = new shape(10, 100, "green", 300, 120);
 }
 
@@ -67,6 +67,7 @@ function shape(width, height, colour, xCoord, yCoord) {
 
 function updateGame() {
   newCanvas.clear();
+  pillarObstable.xCoord -= 5;
 
   playerIcon.xSpeed = 0;
   playerIcon.ySpeed = 0;
