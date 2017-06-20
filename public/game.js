@@ -14,7 +14,7 @@ var newCanvas = {
     this.canvas.height = 500;
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
-    this.interval = setInterval(updateGame, 30);
+    this.interval = setInterval(updateGame, 100);
 
     window.addEventListener("keydown", function(event) {
       newCanvas.key = event.keyCode;
@@ -42,8 +42,14 @@ function shape(width, height, colour, xCoord, yCoord) {
     ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
   }
   this.newPosition = function() {
+    console.log("X: ", playerIcon.xCoord);
+    console.log("Y: ", playerIcon.yCoord);
     this.xCoord += this.xSpeed;
     this.yCoord += this.ySpeed;
+
+    if (this.xCoord < 0) {
+      this.xCoord = 0
+    }
   }
 }
 
@@ -55,21 +61,25 @@ function updateGame() {
 
   //MOVE LEFT
   if (newCanvas.key == 37) {
+    console.log("LEFT");
     playerIcon.xSpeed = -10;
   }
 
   //MOVE UP
   if (newCanvas.key == 38) {
+    console.log("UP");
     playerIcon.ySpeed = -10;
   }
 
   //MOVE RIGHT
   if (newCanvas.key == 39) {
+    console.log("RIGHT");
     playerIcon.xSpeed = 10;
   }
 
   //MOVE DOWN
   if (newCanvas.key == 40) {
+    console.log("DOWN");
     playerIcon.ySpeed = 10;
   }
 
