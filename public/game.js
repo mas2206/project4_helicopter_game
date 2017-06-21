@@ -3,7 +3,7 @@ var pillarObstacles = [];
 
 function newGame() {
   newCanvas.create();
-  playerIcon = new shape(50, 50, "/images/copter.png", 50, 200, "image");
+  playerIcon = new shape(80, 50, "/images/red_copter.png", 50, 200, "image");
 }
 
 var newCanvas = {
@@ -148,7 +148,7 @@ function updateGame() {
     maxHeight = 300;
     height = Math.floor(Math.random() * (maxHeight - (minHeight + 1)) + minHeight); 
 
-    minGap = 80;
+    minGap = 90;
     maxGap = 300;
     gap = Math.floor(Math.random() * (maxGap - (minGap + 1)) + minGap);
 
