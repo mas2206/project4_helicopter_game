@@ -58,15 +58,12 @@ function shape(width, height, colour, xCoord, yCoord, type) {
       ctx.font = this.width + " " + this.height;
       ctx.fillStyle = colour;
       ctx.fillText(this.text, this.xCoord, this.yCoord);
+    }
+    if (type == "image") {
+      ctx.drawImage(this.image, this.xCoord, this.yCoord, this.width, this.height);
     } else {
       ctx.fillStyle = colour;
       ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
-    }
-      if (type == "image") {
-      ctx.drawImage(this.image, this.xCoord, this.yCoord, this.width, this.height);
-      } else {
-    ctx.fillStyle = colour;
-    ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
     }
   }
   this.newPosition = function() {
