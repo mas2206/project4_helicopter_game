@@ -167,7 +167,7 @@ function updateGame() {
     pillarObstacles[i].xCoord -= 5;
     pillarObstacles[i].update();
   }
-  playerScore.text="SCORE: " + Math.round(newCanvas.frameNumber / 5);
+  playerScore.text="SCORE: " + Math.round(newCanvas.frameNumber / 2);
   playerScore.update();
   playerIcon.newPosition();
   playerIcon.update();
