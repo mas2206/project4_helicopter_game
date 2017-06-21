@@ -1,11 +1,13 @@
 var playerIcon;
 var pillarObstacles = [];
 var playerScore;
+var crashSound;
 
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(80, 50, "/images/red_copter.png", 50, 200, "image");
   playerScore = new shape("40px", "Andale Mono", "hotpink", 280, 40, "text");
+  crashSound = new sound("/sounds/crash.mp3");
 }
 
 var newCanvas = {
@@ -112,9 +114,27 @@ function perFrame(number) {
   }
 }
 
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+
+  this.playSound = function() {
+    this.sound.play();
+  }
+
+  this.stopSound = function() {
+    this.sound.pause();
+  }
+}
+
 function updateGame() {
   for (i = 0; i < pillarObstacles.length; i++) {
     if (playerIcon.collide(pillarObstacles[i])) {
+      crashSound.playSound();
       newCanvas.stop();
       console.log("COLLISION DETECTED");
       return;
