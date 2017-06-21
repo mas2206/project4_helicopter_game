@@ -24,7 +24,7 @@ var newCanvas = {
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
     this.frameNumber = 0;
-    this.interval = setInterval(updateGame, 16);
+    this.interval = setInterval(updateGame, 16); //set frame rate
 
     window.addEventListener("keydown", function(event) {
       newCanvas.keys = (newCanvas.keys || []);
@@ -92,6 +92,7 @@ function shape(width, height, colour, xCoord, yCoord, type) {
       this.yCoord = 450;
     }
   }
+  //COLLISION DETECTION
   this.collide = function(otherObject) {
     var playerIconLeft = this.xCoord;
     var playerIconRight = (this.xCoord + this.width);
@@ -137,10 +138,9 @@ function sound(src) {
 function updateGame() {
   for (i = 0; i < pillarObstacles.length; i++) {
     if (playerIcon.collide(pillarObstacles[i])) {
-      crashSound.playSound();
       backgroundMusic.stopSound();
+      crashSound.playSound();
       newCanvas.stop();
-      console.log("COLLISION DETECTED");
       return;
     }
   }
@@ -181,7 +181,7 @@ function updateGame() {
     height = Math.floor(Math.random() * (maxHeight - (minHeight + 1)) + minHeight); 
 
     minGap = 90;
-    maxGap = 300;
+    maxGap = 150;
     gap = Math.floor(Math.random() * (maxGap - (minGap + 1)) + minGap);
 
     pillarObstacles.push(new shape(50, height, "blue", xCoord, 0));
