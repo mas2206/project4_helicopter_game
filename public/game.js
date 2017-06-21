@@ -2,12 +2,15 @@ var playerIcon;
 var pillarObstacles = [];
 var playerScore;
 var crashSound;
+var backgroundMusic;
 
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(80, 50, "/images/red_copter.png", 50, 200, "image");
   playerScore = new shape("40px", "Andale Mono", "hotpink", 280, 40, "text");
   crashSound = new sound("/sounds/crash.mp3");
+  backgroundMusic = new sound("/sounds/background_music.mp3");
+  backgroundMusic.playSound();
 }
 
 var newCanvas = {
@@ -135,6 +138,7 @@ function updateGame() {
   for (i = 0; i < pillarObstacles.length; i++) {
     if (playerIcon.collide(pillarObstacles[i])) {
       crashSound.playSound();
+      backgroundMusic.stopSound();
       newCanvas.stop();
       console.log("COLLISION DETECTED");
       return;
