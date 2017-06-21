@@ -5,7 +5,7 @@ var playerScore;
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(80, 50, "/images/red_copter.png", 50, 200, "image");
-  playerScore = new shape("40px", "Andale Mono", "hotpink", 280, 40, "text");
+  playerScore = new shape("40px", "Andale Mono", "#2DB642", 280, 40, "text");
 }
 
 var newCanvas = {
