@@ -1,9 +1,11 @@
 var playerIcon;
 var pillarObstacles = [];
+var playerScore;
 
 function newGame() {
   newCanvas.create();
   playerIcon = new shape(80, 50, "/images/red_copter.png", 50, 200, "image");
+  playerScore = new shape("40px", "Andale Mono", "hotpink", 280, 40, "text");
 }
 
 var newCanvas = {
@@ -41,17 +43,25 @@ function shape(width, height, colour, xCoord, yCoord, type) {
   this.height = height;
   this.xCoord = xCoord;
   this.yCoord = yCoord;
+  this.xSpeed = 0;
+  this.ySpeed = 0;
 
   this.type = type;
   if (type == "image") {
     this.image = new Image();
     this.image.src = colour;
   }
-
-  this.xSpeed = 0;
-  this.ySpeed = 0;
   this.update = function() {
     ctx = newCanvas.context;
+
+    if (this.type == "text") {
+      ctx.font = this.width + " " + this.height;
+      ctx.fillStyle = colour;
+      ctx.fillText(this.text, this.xCoord, this.yCoord);
+    } else {
+      ctx.fillStyle = colour;
+      ctx.fillRect(this.xCoord, this.yCoord, this.width, this.height);
+    }
       if (type == "image") {
       ctx.drawImage(this.image, this.xCoord, this.yCoord, this.width, this.height);
       } else {
@@ -159,6 +169,8 @@ function updateGame() {
     pillarObstacles[i].xCoord -= 5;
     pillarObstacles[i].update();
   }
+  playerScore.text="SCORE: " + newCanvas.frameNumber;
+  playerScore.update();
   playerIcon.newPosition();
   playerIcon.update();
 }
