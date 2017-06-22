@@ -73,8 +73,6 @@ function shape(width, height, colour, xCoord, yCoord, type) {
     }
   }
   this.newPosition = function() {
-    console.log("PLAYER ICON X: ", playerIcon.xCoord);
-    console.log("PLAYER ICON Y: ", playerIcon.yCoord);
     this.xCoord += this.xSpeed;
     this.yCoord += this.ySpeed;
 
@@ -149,25 +147,21 @@ function updateGame() {
 
   //MOVE LEFT
   if (newCanvas.keys && newCanvas.keys[37]) {
-    console.log("LEFT");
     playerIcon.xSpeed = -4;
   }
 
   //MOVE UP
   if (newCanvas.keys && newCanvas.keys[38]) {
-    console.log("UP");
     playerIcon.ySpeed = -4;
   }
 
   //MOVE RIGHT
   if (newCanvas.keys && newCanvas.keys[39]) {
-    console.log("RIGHT");
     playerIcon.xSpeed = 4;
   }
 
   //MOVE DOWN
   if (newCanvas.keys && newCanvas.keys[40]) {
-    console.log("DOWN");
     playerIcon.ySpeed = 4;
   }
 
