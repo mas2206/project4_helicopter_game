@@ -24,7 +24,7 @@ var newCanvas = {
     this.context = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
     this.frameNumber = 0;
-    this.interval = setInterval(updateGame, 16); //set frame rate
+    this.interval = setInterval(updateGame, 16); //SET FRAME RATE
 
     window.addEventListener("keydown", function(event) {
       newCanvas.keys = (newCanvas.keys || []);
@@ -76,7 +76,7 @@ function shape(width, height, colour, xCoord, yCoord, type) {
     this.xCoord += this.xSpeed;
     this.yCoord += this.ySpeed;
 
-    //player icon cannot go out of bounds anywhere on the canvas
+    //PLAYER ICON CONFINED TO CANVAS
     if (this.xCoord < 0) {
       this.xCoord = 0;
     }
@@ -90,6 +90,7 @@ function shape(width, height, colour, xCoord, yCoord, type) {
       this.yCoord = 450;
     }
   }
+
   //COLLISION DETECTION
   this.collide = function(otherObject) {
     var playerIconLeft = this.xCoord;
@@ -167,9 +168,11 @@ function updateGame() {
 
   newCanvas.clear();
   newCanvas.frameNumber += 1;
+  //SPAWN NEW OBSTACLE EVERY 60 FRAMES
   if (newCanvas.frameNumber == 1 || perFrame(60)) {
     xCoord = newCanvas.canvas.width;
 
+    //RANDOMISATION
     minHeight = 20;
     maxHeight = 300;
     height = Math.floor(Math.random() * (maxHeight - (minHeight + 1)) + minHeight); 
@@ -182,7 +185,7 @@ function updateGame() {
     pillarObstacles.push(new shape(50, (xCoord - height - gap), "blue", xCoord, (height + gap)));
   }
   for (i = 0; i < pillarObstacles.length; i++) {
-    pillarObstacles[i].xCoord -= 5;
+    pillarObstacles[i].xCoord -= 5; //PILLAR OBSTACLE MOVE SPEED
     pillarObstacles[i].update();
   }
   playerScore.text="SCORE: " + Math.round(newCanvas.frameNumber / 2);
